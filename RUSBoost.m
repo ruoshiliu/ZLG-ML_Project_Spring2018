@@ -26,7 +26,7 @@ rTree = fitcensemble(XTrain,yTrain,'Method','RUSBoost','NumLearningCycles',1000,
 
 [accuracy,precision,totalOnes,onesGuessed] = error2(yPTest,yTest);
 % plotting the resubstitution error for each learning cycles (cumulative)
-rsLoss = resubLoss(Mdl1,'Mode','Cumulative');
+rsLoss = resubLoss(rTree,'Mode','Cumulative');
 plot(rsLoss);
 xlabel('Number of Learning Cycles');
 ylabel('Resubstitution Loss');
