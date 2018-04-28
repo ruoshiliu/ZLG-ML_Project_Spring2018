@@ -84,13 +84,13 @@ def DO(frm,to,fileno):
             }
 
     print('loading train data...',frm,to)
-    train_df = pd.read_csv("/Users/bluser/desktop/kaggle/train.csv", parse_dates=['click_time'], skiprows=range(1,frm), nrows=to-frm, dtype=dtypes, usecols=['ip','app','device','os', 'channel', 'click_time', 'is_attributed'])
+    train_df = pd.read_csv("/home/u/fall17/rliu/Desktop/kaggle/data/train.csv", parse_dates=['click_time'], skiprows=range(1,frm), nrows=to-frm, dtype=dtypes, usecols=['ip','app','device','os', 'channel', 'click_time', 'is_attributed'])
 
     print('loading test data...')
     if debug:
-        test_df = pd.read_csv("/Users/bluser/desktop/kaggle/test.csv", nrows=100000, parse_dates=['click_time'], dtype=dtypes, usecols=['ip','app','device','os', 'channel', 'click_time', 'click_id'])
+        test_df = pd.read_csv("/home/u/fall17/rliu/Desktop/kaggle/data/test.csv", nrows=100000, parse_dates=['click_time'], dtype=dtypes, usecols=['ip','app','device','os', 'channel', 'click_time', 'click_id'])
     else:
-        test_df = pd.read_csv("/Users/bluser/desktop/kaggle/test.csv", parse_dates=['click_time'], dtype=dtypes, usecols=['ip','app','device','os', 'channel', 'click_time', 'click_id'])
+        test_df = pd.read_csv("/home/u/fall17/rliu/Desktop/kaggle/data/test.csv", parse_dates=['click_time'], dtype=dtypes, usecols=['ip','app','device','os', 'channel', 'click_time', 'click_id'])
 
     len_train = len(train_df)
     train_df=train_df.append(test_df)
@@ -316,7 +316,7 @@ nrows=184903891-1
 nchunk=80000000
 val_size=2500000
 
-frm=nrows-75000000
+frm=nrows-184903890
 if debug:
     frm=0
     nchunk=100000

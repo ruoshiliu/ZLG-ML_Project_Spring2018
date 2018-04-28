@@ -25,7 +25,7 @@ def lgb_modelfit_nocv(params, dtrain, dvalid, predictors, target='target', objec
         'objective': objective,
         'metric':metrics,
         'learning_rate': 0.2,
-        'is_unbalance': 'true',  #because training data is unbalance (replaced with scale_pos_weight)
+        # 'is_unbalance': 'true',  #because training data is unbalance (replaced with scale_pos_weight)
         'num_leaves': 31,  # we should let it be smaller than 2^(max_depth)
         'max_depth': -1,  # -1 means no limit
         'min_child_samples': 20,  # Minimum number of data need in a child(min_data_in_leaf)
@@ -86,12 +86,12 @@ def DO(frm,to,fileno):
             }
 
     print('loading train data...',frm,to)
-    train_df = pd.read_csv("/Users/bluser/desktop/kaggle/train.csv", parse_dates=['click_time'], skiprows=range(1,frm), nrows=to-frm, dtype=dtypes, usecols=['ip','app','device','os', 'channel', 'click_time', 'is_attributed'])
+    train_df = pd.read_csv("/Users/ruoshiliu/Desktop/OneDrive/Github/ZLG-ML_Project_Spring2018/train.csv", parse_dates=['click_time'], skiprows=range(1,frm), nrows=to-frm, dtype=dtypes, usecols=['ip','app','device','os', 'channel', 'click_time', 'is_attributed'])
     print('loading test data...')
     if debug:
-        test_df = pd.read_csv("/Users/bluser/desktop/kaggle/test.csv", nrows=100000, parse_dates=['click_time'], dtype=dtypes, usecols=['ip','app','device','os', 'channel', 'click_time', 'click_id'])
+        test_df = pd.read_csv("/Users/ruoshiliu/Desktop/OneDrive/Github/ZLG-ML_Project_Spring2018/test.csv", nrows=100000, parse_dates=['click_time'], dtype=dtypes, usecols=['ip','app','device','os', 'channel', 'click_time', 'click_id'])
     else:
-        test_df = pd.read_csv("/Users/bluser/desktop/kaggle/test.csv", parse_dates=['click_time'], dtype=dtypes, usecols=['ip','app','device','os', 'channel', 'click_time', 'click_id'])
+        test_df = pd.read_csv("/Users/ruoshiliu/Desktop/OneDrive/Github/ZLG-ML_Project_Spring2018/test.csv", parse_dates=['click_time'], dtype=dtypes, usecols=['ip','app','device','os', 'channel', 'click_time', 'click_id'])
 
     len_train = len(train_df)
     train_df=train_df.append(test_df)
@@ -323,7 +323,7 @@ if debug:
 else:
     val_size = 2500000
     # nchunk = 40000000
-    nchunk = 75000000
+    nchunk = 5000000
     frm = nrows - nchunk
 
 to = frm + nchunk
